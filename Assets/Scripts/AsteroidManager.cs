@@ -11,6 +11,10 @@ public class AsteroidManager : MonoBehaviour
     [SerializeField]
     public int scoreValue = 0;
 
+    public Transform leftSpawn;
+    public Transform rightSpawn;
+    public Transform smallAsteroid;
+
 
     private Rigidbody2D rb2;
     private DataManager data;
@@ -18,7 +22,7 @@ public class AsteroidManager : MonoBehaviour
     private float rotationCoef;
 
 
-    void Start()
+    public void Start()
     {
         rb2 = GetComponent<Rigidbody2D>();
         data = GetComponent<DataManager>();
@@ -32,6 +36,14 @@ public class AsteroidManager : MonoBehaviour
     {
         if (data.health <= 0)
         {
+            UpdateScore();
+
+            if (leftSpawn != null && rightSpawn != null)
+            {
+                Instantiate(smallAsteroid, rightSpawn.position, rightSpawn.rotation);
+                Instantiate(smallAsteroid, leftSpawn.position, rightSpawn.rotation);
+            }
+
             data.RemoveSelf();
         }
     }
@@ -49,14 +61,14 @@ public class AsteroidManager : MonoBehaviour
             otherManager.health -= data.damage;
     }
 
-    private void OnDestroy()
+
+    private void UpdateScore()
     {
         LevelManager LevelManager = cam.GetComponent<LevelManager>();
 
         if (LevelManager != null)
             LevelManager.SetScore(scoreValue);
     }
-
 
     private void Spin()
     {

@@ -78,7 +78,7 @@ public class LevelManager : MonoBehaviour
     {   
         if (asteroidTimer == 0)
         {
-            Instantiate(asteroid, spawnLocation);
+            Instantiate(asteroid, spawnLocation.position, spawnLocation.rotation);
             asteroidTimer = asteroidSpanRate;
         }
         else
