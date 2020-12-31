@@ -64,6 +64,11 @@ public class ShipMovement : MonoBehaviour
         controls.Gameplay.Enable();
     }
 
+    public void DisableControls()
+    {
+        controls.Gameplay.Disable();
+    }
+
     private void SetControls()
     {
         // Thrusters 

@@ -10,9 +10,9 @@ public class LevelManager : MonoBehaviour
     public float asteroidSpanRate = 1.0f;
 
     public Transform asteroid;
-    public Transform spawnLocation;
     public Text scoreText;
     public GameObject pauseMenu;
+    public Transform[] spawnLocations;
 
     private bool isSpawning;
     private int score;
@@ -78,7 +78,9 @@ public class LevelManager : MonoBehaviour
     {   
         if (asteroidTimer == 0)
         {
-            Instantiate(asteroid, spawnLocation.position, spawnLocation.rotation);
+            int index = Random.Range(0, spawnLocations.Length);
+            
+            Instantiate(asteroid, new Vector3(spawnLocations[index].position.x, spawnLocations[index].position.y -10), spawnLocations[index].rotation);
             asteroidTimer = asteroidSpanRate;
         }
         else

@@ -15,9 +15,4 @@ public class DataManager : MonoBehaviour
     {
         health = maxHealth;
     }
-
-    public void RemoveSelf(float delay = 0)
-    {
-        Destroy(this.gameObject, delay);
-    }
 }

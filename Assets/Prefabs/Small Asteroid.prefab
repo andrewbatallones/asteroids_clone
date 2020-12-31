@@ -102,6 +102,7 @@ MonoBehaviour:
   rotationSpeed: 5
   speed: 5
   scoreValue: 1
+  maxSpeed: 10
   leftSpawn: {fileID: 0}
   rightSpawn: {fileID: 0}
   smallAsteroid: {fileID: 0}

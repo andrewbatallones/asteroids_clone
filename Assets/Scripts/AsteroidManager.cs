@@ -10,6 +10,8 @@ public class AsteroidManager : MonoBehaviour
     public float speed = 1.0f;
     [SerializeField]
     public int scoreValue = 0;
+    [SerializeField]
+    public float maxSpeed = 1.0f;
 
     public Transform leftSpawn;
     public Transform rightSpawn;
@@ -44,12 +46,13 @@ public class AsteroidManager : MonoBehaviour
                 Instantiate(smallAsteroid, leftSpawn.position, rightSpawn.rotation);
             }
 
-            data.RemoveSelf();
+            Destroy(this.gameObject);
         }
     }
 
     private void FixedUpdate()
     {
+        SetMaxVelocity();
         Spin();
     }
 
@@ -81,5 +84,10 @@ public class AsteroidManager : MonoBehaviour
         float randY = Random.Range(-1.0f, 1.0f);
 
         rb2.velocity = new Vector2(randX, randY) * speed;
+    }
+
+    private void SetMaxVelocity()
+    {
+        rb2.velocity = new Vector2(Mathf.Min(rb2.velocity.x, maxSpeed), Mathf.Min(rb2.velocity.y, maxSpeed));
     }
 }
