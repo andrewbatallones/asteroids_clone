@@ -21,39 +21,40 @@ public class AsteroidManager : MonoBehaviour
     private Rigidbody2D rb2;
     private DataManager data;
     private Camera cam;
+    private ParticleSystem explosion;
     private float rotationCoef;
+    private bool isAlive;
 
 
     public void Start()
     {
         rb2 = GetComponent<Rigidbody2D>();
         data = GetComponent<DataManager>();
+        explosion = GetComponent<ParticleSystem>();
         cam = Camera.main;
         rotationCoef = Random.Range(-1.0f, 1.0f);
+        isAlive = true;
 
         InitialVelocity();
     }
 
     private void Update()
     {
-        if (data.health <= 0)
+        if (data.health <= 0 && isAlive)
         {
+            isAlive = false;
             UpdateScore();
-
-            if (leftSpawn != null && rightSpawn != null)
-            {
-                Instantiate(smallAsteroid, rightSpawn.position, rightSpawn.rotation);
-                Instantiate(smallAsteroid, leftSpawn.position, rightSpawn.rotation);
-            }
-
-            Destroy(this.gameObject);
+            StartCoroutine("Explode");
         }
     }
 
     private void FixedUpdate()
     {
-        SetMaxVelocity();
-        Spin();
+        if (isAlive)
+        {
+            SetMaxVelocity();
+            Spin();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -89,5 +90,25 @@ public class AsteroidManager : MonoBehaviour
     private void SetMaxVelocity()
     {
         rb2.velocity = new Vector2(Mathf.Min(rb2.velocity.x, maxSpeed), Mathf.Min(rb2.velocity.y, maxSpeed));
+    }
+
+
+    IEnumerator Explode()
+    {
+        if (leftSpawn != null && rightSpawn != null)
+        {
+            Instantiate(smallAsteroid, rightSpawn.position, rightSpawn.rotation);
+            Instantiate(smallAsteroid, leftSpawn.position, rightSpawn.rotation);
+        }
+
+        Destroy(GetComponent<Rigidbody2D>());
+        Destroy(GetComponent<CircleCollider2D>());
+        Destroy(GetComponent<SpriteRenderer>());
+
+        explosion.Play();
+
+        yield return new WaitForSeconds(explosion.main.duration);
+
+        Destroy(gameObject);
     }
 }

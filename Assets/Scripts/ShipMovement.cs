@@ -12,7 +12,8 @@ public class ShipMovement : MonoBehaviour
     public Transform bulletLocation;
     public ParticleSystem thrusters;
     public LevelManager levelManager;
-
+    public AudioSource shootSound;
+    
     [SerializeField]
     public float speed = 1f;
     [SerializeField]
@@ -116,6 +117,7 @@ public class ShipMovement : MonoBehaviour
         if (reloadTimer == 0)
         {
             Instantiate(bullet, bulletLocation.transform.position, transform.rotation);
+            shootSound.Play();
             reloadTimer = reloadSpeed;
         }
         else

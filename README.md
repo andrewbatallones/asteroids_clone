@@ -14,7 +14,11 @@ This will be my first attempt of making a completed game and I want to record th
 - How to persist an object between scenes
 - C# -> the ```static``` keyword and somewhat on how it works.
 - The new controller system package
+- Be mindful on what the build I am doing and how it affects the UI. In specific, how it affects the scale as well as the placements.
+- ```Time.deltaTime``` can actually do some messed up things if not used properly or not at all.
+- Always playtest the final build. There may be bugs that only exist in the platform you build it out to.
 
 ### Challanges and what I should do for next time
 - I should gameplan the project before diving in. It's better to have some sort of big picture (use Trello)
 - Better sorting of how I write code. This project's code was all over the place.
+- I need to really not get into feature creep. I have already almost tried to implement a bunch more things on this demo.

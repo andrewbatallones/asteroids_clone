@@ -14,12 +14,14 @@ public class MissileManager : MonoBehaviour
 
     private Rigidbody2D rb2;
     private ParticleSystem explosion;
+    private AudioSource explosionSound;
 
     // Start is called before the first frame update
     void Start()
     {
         rb2 = GetComponent<Rigidbody2D>();
         explosion = GetComponent<ParticleSystem>();
+        explosionSound = GetComponent<AudioSource>();
 
         rb2.velocity = transform.up * -speed;
 
@@ -42,6 +44,7 @@ public class MissileManager : MonoBehaviour
         Destroy(rb2);
         Destroy(GetComponent<BoxCollider2D>());
         Destroy(GetComponent<SpriteRenderer>());
+        explosionSound.Play();
         explosion.Play();
         Destroy(this.gameObject, explosion.main.duration);
     }

@@ -7,8 +7,6 @@ public class BackgroundMusicManager : MonoBehaviour
 {
     public static BackgroundMusicManager bgm;
 
-    public Slider volumeSlider;
-
     private AudioSource music;
 
 
@@ -24,11 +22,6 @@ public class BackgroundMusicManager : MonoBehaviour
         else
         {
             Destroy(this.gameObject);
-        }
-
-        if (volumeSlider != null)
-        {
-            volumeSlider.maxValue = music.volume;
         }
     }
 

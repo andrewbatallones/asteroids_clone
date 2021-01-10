@@ -12,11 +12,13 @@ public class ShipManager : MonoBehaviour
     public ShipMovement shipControls;
 
     private DataManager data;
+    private AudioSource explosionSound;
     private bool lostTriggered;
     
     void Start()
     {
         data = GetComponent<DataManager>();
+        explosionSound = GetComponent<AudioSource>();
         healthBar.SetMaxHealth(data.maxHealth);
 
         lostTriggered = false;
@@ -50,6 +52,7 @@ public class ShipManager : MonoBehaviour
         Destroy(GetComponent<BoxCollider2D>());
         Destroy(GetComponent<SpriteRenderer>());
 
+        explosionSound.Play();
         explosion.Play();
         yield return new WaitForSeconds(explosion.main.duration);
 
