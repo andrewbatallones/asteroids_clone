@@ -6,6 +6,7 @@ This will be my first attempt of making a completed game and I want to record th
 - Sprites: Kenny Space Shooter https://www.kenney.nl/assets/space-shooter-extension
 - Sprites: Brackeys Health Bar Tutorial https://www.youtube.com/watch?v=BLfNP4Sc_iA&t=617s
 - Music: Humble Bundle Game Creator Bundle https://www.humblebundle.com/software/game-creator-software
+- Sounds: Used a program called Bfxr, which can be downloaded here: https://www.bfxr.net/
 
 
 ### What I learned
