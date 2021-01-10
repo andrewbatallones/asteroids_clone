@@ -96,7 +96,7 @@ public class LevelManager : MonoBehaviour
             asteroidTimer = (asteroidSpanRate / level) * 10;
         }
         else
-            asteroidTimer = Mathf.Max(0, (asteroidTimer - 0.01f) * Time.deltaTime);
+            asteroidTimer = Mathf.Max(0, asteroidTimer - (0.01f * Time.deltaTime));
     }
 
     private void SetLevelData()
